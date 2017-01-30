@@ -1,0 +1,40 @@
+<div class="container">
+  <div class='countdown'></div>
+  <%= form_tag test_result_path, method: :get, role:'form', style:'display: block; padding-top: 20px;' do%>
+    <% @questions.each do |question|%>
+      <div class="form-group">
+        <h5><%= question.question %></h5>
+      </div>
+      <div class="form-group">
+        <%= radio_button_tag "options[#{question.id}]", 'a'%>
+        <%= label_tag 'options', question.option_a, class: "options-label" %>
+      </div>
+      <div class="form-group">
+        <%= radio_button_tag "options[#{question.id}]", 'b'%>
+        <%= label_tag 'options', question.option_b, class: "options-label"%>
+      </div>
+      <div class="form-group">
+        <%= radio_button_tag "options[#{question.id}]", 'c'%>
+        <%= label_tag 'options', question.option_c, class: "options-label" %>
+      </div>
+      <div class="form-group">
+        <%= radio_button_tag "options[#{question.id}]", 'd'%>
+        <%= label_tag 'options', question.option_d, class: "options-label" %>
+      </div>
+    <% end %>
+    <%= submit_tag 'Submit', options: :options %>
+    <%= hidden_field_tag :total_questions, @questions.count %>
+    <%= hidden_field_tag :assessment_id, @questions.first.try(:assessment_id) %>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  var now = new Date();
+  var max_time = "<%= @questions.first.assessment.max_time.strftime("%H:%M:%S")%>"
+  var hms = max_time.split(':');
+  var minutes = (+hms[0]) * 60 + (+hms[1]);
+  now.setMinutes(now.getMinutes() + minutes);
+  console.log(now)
+  var url = "/test_result?assessment_id=<%= @questions.first.try(:assessment_id) %>"
+  $('.countdown').countdown({until: now, format: 'HMS', compact: true, expiryUrl: url});
+</script>

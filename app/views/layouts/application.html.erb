@@ -6,9 +6,8 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-
-<%= yield %>
-
+<body class="menubar-hoverable header-fixed">
+  <%= render  'layouts/header' %>
+  <%= yield %>
 </body>
 </html>

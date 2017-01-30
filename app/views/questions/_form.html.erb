@@ -1,45 +1,47 @@
-<%= form_for(@question) do |f| %>
-  <% if @question.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+<div class="row">
+  <%= form_for(@question, role:'form', style:'display: block; padding-top: 20px;') do |f| %>
+    <% if @question.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
 
-      <ul>
-      <% @question.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @question.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :question %><br>
+      <%= f.text_area :question, class: "form-control" %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :question %><br>
-    <%= f.text_area :question %>
-  </div>
-  <div class="field">
-    <%= f.label :option_a %><br>
-    <%= f.text_field :option_a %>
-  </div>
-  <div class="field">
-    <%= f.label :option_b %><br>
-    <%= f.text_field :option_b %>
-  </div>
-  <div class="field">
-    <%= f.label :option_c %><br>
-    <%= f.text_field :option_c %>
-  </div>
-  <div class="field">
-    <%= f.label :option_d %><br>
-    <%= f.text_field :option_d %>
-  </div>
-  <div class="field">
-    <%= f.label :answer %><br>
-    <%= f.text_field :answer %>
-  </div>
-  <div class="field">
-    <%= f.label :assessment_id %><br>
-    <%= f.text_field :assessment_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+    <div class="form-group">
+      <%= f.label :option_a %><br>
+      <%= f.text_field :option_a, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :option_b %><br>
+      <%= f.text_field :option_b, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :option_c %><br>
+      <%= f.text_field :option_c, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :option_d %><br>
+      <%= f.text_field :option_d, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :answer %><br>
+      <%= f.text_field :answer, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :assessment_id %><br>
+      <%= f.collection_select :assessment_id, @assessments, :id, :title, {}, class: "form-control"%>
+    </div>
+    <div class="actions">
+      <%= f.submit class: 'btn btn-default' %>
+    </div>
+  <% end %>    
+</div>

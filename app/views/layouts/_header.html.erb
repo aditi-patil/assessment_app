@@ -1,0 +1,17 @@
+<% if current_user %>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <%= link_to 'Assessment App', root_path, class: 'navbar-brand' %>
+      </div>
+      <ul class="nav navbar-nav">
+        <% if current_user.is_admin? %>
+          <li><%= link_to 'Dashboard', '/admin' %></li>
+        <% end %>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+      </ul>
+    </div>
+  </nav>
+<% end %>

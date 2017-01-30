@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170130065320) do
+ActiveRecord::Schema.define(version: 20170131094924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,19 @@ ActiveRecord::Schema.define(version: 20170130065320) do
 
   add_index "questions", ["assessment_id"], name: "index_questions_on_assessment_id", using: :btree
 
+  create_table "test_results", force: :cascade do |t|
+    t.integer  "assessment_id"
+    t.integer  "user_id"
+    t.text     "answers"
+    t.string   "marks"
+    t.string   "rank"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "test_results", ["assessment_id"], name: "index_test_results_on_assessment_id", using: :btree
+  add_index "test_results", ["user_id"], name: "index_test_results_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "email",                  default: "", null: false
@@ -61,4 +74,6 @@ ActiveRecord::Schema.define(version: 20170130065320) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "questions", "assessments"
+  add_foreign_key "test_results", "assessments"
+  add_foreign_key "test_results", "users"
 end

@@ -12,4 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require jquery.countdown
+ *= require bootstrap-theme.min.css
+ *= require bootstrap.min.css
  */

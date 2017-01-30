@@ -1,11 +1,34 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
-<% if user_signed_in? %>
-  <li>
-  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
-  </li>
-<% else %>
-  <li>
-  <%= link_to('Login', new_user_session_path)  %>  
-  </li>
-<% end %>
+<div class="container">
+  <h1>All Assessments</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Max Time</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Marks</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @assessments.each do |assessment| %>
+        <tr>
+          <td><%= assessment.title %></td>
+          <td><%= assessment.max_time.strftime("%H:%M:%S") %></td>
+          <td><%= assessment.start_date %></td>
+          <td><%= assessment.end_date %></td>
+          <td><%= assessment.marks %></td>
+          <% if assessment.get_test_assessments(current_user).present?  %>
+            <td><%= link_to 'Show Test' , show_test_path(assessment), target: :blank %></td>
+          <% elsif assessment.check_valid_dates? %>
+            <td><%= link_to 'Start Test' , attempt_test_path(assessment), target: :blank %></td>
+          <% else %>
+            <td>Submission date expired</td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

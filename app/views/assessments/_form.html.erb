@@ -1,37 +1,39 @@
-<%= form_for(@assessment) do |f| %>
-  <% if @assessment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@assessment.errors.count, "error") %> prohibited this assessment from being saved:</h2>
+<div class="row">
+  <%= form_for(@assessment, role:'form', style:'display: block; padding-top: 20px;') do |f| %>
+    <% if @assessment.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@assessment.errors.count, "error") %> prohibited this assessment from being saved:</h2>
 
-      <ul>
-      <% @assessment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @assessment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :title %><br>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :marks %><br>
+      <%= f.number_field :marks, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :max_time %><em>(In HH:MM format)</em><br>
+      <%= f.time_select :max_time, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :start_date %><br>
+      <%= f.date_select :start_date, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :end_date %><br>
+      <%= f.date_select :end_date, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit class: "btn btn-default" %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :marks %><br>
-    <%= f.number_field :marks %>
-  </div>
-  <div class="field">
-    <%= f.label :max_time %><br>
-    <%= f.time_select :max_time %>
-  </div>
-  <div class="field">
-    <%= f.label :start_date %><br>
-    <%= f.date_select :start_date %>
-  </div>
-  <div class="field">
-    <%= f.label :end_date %><br>
-    <%= f.date_select :end_date %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

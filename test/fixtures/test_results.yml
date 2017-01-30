@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  assessment_id: 
+  user_id: 
+  answers: MyText
+  marks: MyString
+  rank: MyString
+
+two:
+  assessment_id: 
+  user_id: 
+  answers: MyText
+  marks: MyString
+  rank: MyString

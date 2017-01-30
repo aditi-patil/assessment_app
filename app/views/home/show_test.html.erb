@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <h3>Assessment Title : <%= @questions.first.assessment.try(:title)%></h3> 
+    <br/>
+
+    <% @questions.each do |question|%>
+      <p><%= question.question %></p>
+      <div>
+        <%= radio_button_tag "options[#{question.id}]", question.option_a, question.get_check_values(current_user, 'a')%>
+        <%= label_tag 'options', question.option_a, class: "options-label" %>
+      </div>
+      <div>
+        <%= radio_button_tag "options[#{question.id}]", question.option_b, question.get_check_values(current_user, 'b')%>
+        <%= label_tag 'options', question.option_b, class: "options-label" %>
+      </div>
+      <div>
+        <%= radio_button_tag "options[#{question.id}]", question.option_c, question.get_check_values(current_user, 'c')%>
+        <%= label_tag 'options', question.option_c, class: "options-label" %>
+      </div>
+      <div>
+        <%= radio_button_tag "options[#{question.id}]", question.option_d, question.get_check_values(current_user, 'd')%>
+        <%= label_tag 'options', question.option_d, class: "options-label" %>
+      </div>
+      <br/>
+    <% end %>
+    <div class="row">
+      <div><h4>Marks obtained are: <%= @marks_obtained %> out of <%= @assessment.marks%></h4></div>
+    </div>
+  </div>
+</div>

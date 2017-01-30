@@ -6,12 +6,12 @@ RailsAdmin.config do |config|
   # config.authenticate_with do
   #   warden.authenticate! scope: :user
   # end
-
   config.authorize_with do |controller|
     unless current_user.try(:is_admin?)
-      redirect_to root_path
+      redirect_to '/'
     end
   end
+
   config.current_user_method(&:current_user)
   ## == Cancan ==
   # config.authorize_with :cancan
