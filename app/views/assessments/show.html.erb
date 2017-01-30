@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @assessment.title %>
+</p>
+
+<p>
+  <strong>Marks:</strong>
+  <%= @assessment.marks %>
+</p>
+
+<p>
+  <strong>Max time:</strong>
+  <%= @assessment.max_time %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @assessment.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @assessment.end_date %>
+</p>
+
+<%= link_to 'Edit', edit_assessment_path(@assessment) %> |
+<%= link_to 'Back', assessments_path %>

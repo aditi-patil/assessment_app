@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  marks: 1
+  max_time: 2017-01-30 11:37:36
+  start_date: 2017-01-30
+  end_date: 2017-01-30
+
+two:
+  title: MyString
+  marks: 1
+  max_time: 2017-01-30 11:37:36
+  start_date: 2017-01-30
+  end_date: 2017-01-30
